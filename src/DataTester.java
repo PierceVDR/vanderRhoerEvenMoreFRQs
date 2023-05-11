@@ -4,7 +4,7 @@ public class DataTester {
         boolean testPass = true;
         int[][] test1 = new int[5][6]; // initializes to all 0's
         Data d1 = new Data(test1);
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 1; i <= 1000; i++) {
             test1 = new int[5][6];
             d1 = new Data(test1);
             d1.repopulate();

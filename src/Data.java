@@ -1,5 +1,5 @@
 public class Data {
-    public static final int MAX = 500; // THIS VALUE ADDED TO ENABLE TESTING
+    public static final int MAX = 1200; // THIS VALUE ADDED TO ENABLE TESTING
     private int[][] grid;
 
     // CODE ADDED TO ENABLE TESTING; IMPLEMENTATION NOT SHOWN IN ORIGINAL FRQ
@@ -24,11 +24,16 @@ public class Data {
         for (int r=0;r<grid.length;r++){
             for(int c=0;c<grid[r].length;c++){
                 int tens=MAX/10;
+                int hundreds=tens/10;
 
-                int n=0;
-                while(n%10==0){
-                    n=(int)(Math.random()*MAX)+1;
-                }
+                int tensMax=tens-hundreds;
+
+                int n=(int)(Math.random()*tensMax)+1;
+
+                int hundredsUnderN=(n-1)/9;
+
+                n+=hundredsUnderN;
+
                 grid[r][c]=n*10;
             }
         }
@@ -40,10 +45,14 @@ public class Data {
 
         int num=0;
         for(int c=0;c<grid[0].length;c++){
+            boolean pass=true;
             for(int r=1;r<grid.length;r++){
-                if (grid[r][c]<grid[r-1][c]){continue;}
+                if (grid[r][c]<grid[r-1][c]){
+                    pass=false;
+                    break;
+                }
             }
-            num++;
+            if (pass){num++;}
         }
         return num;
     }
